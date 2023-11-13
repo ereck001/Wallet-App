@@ -62,10 +62,12 @@ const MockedData: Array<NotificationType> = [
 ]
 const windowHeight = Dimensions.get('window').height
 
-export default ()=> {
+export default (props:any)=> {
 
   return <View style={styles.container}>
-    <HeaderWithBtn />
+    <HeaderWithBtn onClick={
+      () => props.navigation.navigate("Home")}
+    />
     <Text style={styles.title}>Notification</Text>
     <ScrollView contentContainerStyle={styles.list}>
       <Text style={styles.text}>New</Text>

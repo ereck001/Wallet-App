@@ -3,7 +3,9 @@ import { ArrowCircleLeft } from "iconsax-react-native"
 
 export default (props: any) => {
 
-  return <TouchableOpacity style={styles.header}>
+  return <TouchableOpacity style={styles.header}
+    onPress={props.onClick}
+  >
   <ArrowCircleLeft
     color="#45197D"
     size={36}
