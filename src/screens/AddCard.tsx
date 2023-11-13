@@ -15,9 +15,9 @@ export default ()=> {
     <Text style={styles.title}>Add Card</Text>
     <View style={styles.imageContainer}>
       <Image
-      style={styles.image}
-      source={require('../assets/images/card.svg')}
-    />
+        style={styles.image}
+        source={require('../assets/images/card.svg')}
+      />
     </View>
     <Text style={styles.bottomText}>
       Add a new card {"\n"} on your wallet for easy life

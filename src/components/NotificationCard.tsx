@@ -6,33 +6,44 @@ import {
   View
 } from 'react-native'
 
-import { ArrowCircleUp } from 'iconsax-react-native'
+import { ArrowCircleUp, ArrowCircleDown } from 'iconsax-react-native'
 
-export default () => {
+export default (props: any) => {
 
   return <View style={styles.conantainerShadow}>
     <TouchableOpacity
       style={styles.container}
-      onPress={() => Alert.alert('Notification')}
-    >
+      //onPress={() => Alert.alert('Notification')}
+    > 
+      {
+        props.isNew ?
+        <Text style={styles.dot}>.</Text> :
+        false
+      }
       <View style={styles.textSection}>
-        <Text style={styles.text}>29 June 2021, 7.14 PM</Text>
-        <Text style={styles.mainText}>You received Rp 100.000 from Alexandr Gibson Jogja</Text>
-        <Text style={styles.text}>‘Pay debt’</Text>
+        <Text style={styles.text}>{props.headerText}</Text>
+        <Text style={styles.mainText}>{props.bodyText}</Text>
+        <Text style={styles.text}>{props.footerText}</Text>
       </View>
       <View>
-        <ArrowCircleUp
-          size={20}
-          color='#56BE15'
-        />
+        {
+          props.isReceived ?
+          <ArrowCircleUp
+            size={20}
+            color='#56BE15'
+          /> :
+          <ArrowCircleDown
+            size={20}
+            color='#FF3333'
+          />
+        }
       </View>
-
     </TouchableOpacity>
   </View>
 }
 const styles = StyleSheet.create({
   conantainerShadow:{
-    marginTop:22,
+    marginTop:12,
     width:313,
     height: 90,
     borderRadius:15,
@@ -59,11 +70,19 @@ const styles = StyleSheet.create({
     backgroundColor:'white'
 
   },
+  dot:{
+    fontSize:80,
+    color: '#f00',
+    position: 'absolute',
+    top: 1,
+    right: 8,
+    marginTop: -78
+  },
   textSection:{
     height:'100%',
     justifyContent:'space-around',
   },
-  text:{
+  text:{    
     marginLeft:7,
     fontSize:10,
     fontFamily:'Quicksand_500Medium',
