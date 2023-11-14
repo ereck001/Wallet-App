@@ -67,7 +67,7 @@ const mockedTrData: TransactionDataType[] = [
 ]
 
 
-export default () => <View style={{flex:1, backgroundColor: '#fff'}}>
+export default (props:any) => <View style={{flex:1, backgroundColor: '#fff'}}>
   <View style={styles.container}>
     <View style={styles.header}>
       <View>
@@ -77,7 +77,9 @@ export default () => <View style={{flex:1, backgroundColor: '#fff'}}>
       <Image style={styles.avatar}
         source={mockedUserData.image} />
     </View>
-    <View style={styles.cardImage}>
+    <TouchableOpacity style={styles.cardImage}
+      onPress={() => props.navigation.navigate("DetailCard")}
+    >
       <ImageBackground
         style={styles.bkgImage}
         source={BkgImg}
@@ -92,11 +94,14 @@ export default () => <View style={{flex:1, backgroundColor: '#fff'}}>
           <Text style={styles.cardRightTextBottom}>Mabank</Text>
         </View>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
     <View style={styles.screenSection}>
       <View>
         <View style={styles.iconContainerShadow}>
-          <TouchableOpacity style={styles.iconContainer}>
+          <TouchableOpacity
+            style={styles.iconContainer}
+            onPress={() => props.navigation.navigate("Transfer")}
+          >
             <Convert size={28} color="#2F1155" />
           </TouchableOpacity>
         </View>
@@ -120,7 +125,10 @@ export default () => <View style={{flex:1, backgroundColor: '#fff'}}>
       </View>
       <View>
         <View style={styles.iconContainerShadow}>
-          <TouchableOpacity style={styles.iconContainer}>
+          <TouchableOpacity
+            style={styles.iconContainer}
+            onPress={() => props.navigation.navigate("AddCard")}
+          >
             <AddCircle size={28} color="#2F1155" />
           </TouchableOpacity>
         </View>

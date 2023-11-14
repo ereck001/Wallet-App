@@ -16,25 +16,25 @@ import BtnFacebook from "../components/BtnSocialMedia/BtnFacebook"
 import BtnDefault from "../components/BtnDefault"
 import { useState, useEffect } from "react"
 
-export default () => {
+export default (props: any) => {
   const [isKeyboardVisible, setKeyboardVisible] = useState(false)
   const windownHeight = Dimensions.get('window').height
 
   const shortScreenTitleStyle = windownHeight < 750 ?
-  {
-    marginTop:90
-  } :
-  {
-    marginTop:110
-  }
+    {
+      marginTop: 90
+    } :
+    {
+      marginTop: 110
+    }
 
   const shortScreenMessageStyle = windownHeight < 750 ?
-  {
-    marginTop:34
-  } :
-  {
-    marginTop:64
-  }
+    {
+      marginTop: 34
+    } :
+    {
+      marginTop: 64
+    }
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -57,55 +57,62 @@ export default () => {
     };
   }, []);
 
-  return <SafeAreaView style={styles.container}>
-    {
-      !isKeyboardVisible ?
-      <View style={[ styles.sectionTop, shortScreenTitleStyle ]}>
-        <Text style={styles.title}>
-        Welcome back{"\n"}to Mabank Wallet
-        </Text>
-        <Text style={[styles.message, shortScreenMessageStyle]}>Sign up with</Text>
-      </View> :
-      <View style={{marginTop: 50}}/>
-    }
-    <View >
+  return <SafeAreaView style={styles.bkg}>
+    <View style={styles.container}>
       {
         !isKeyboardVisible ?
-        <View style={styles.sectionButtons}>
-          <BtnGoogle />
-          <View style={{ width: 20 }} />
-          <BtnFacebook />
-        </View> :
-        false
+          <View style={[styles.sectionTop, shortScreenTitleStyle]}>
+            <Text style={styles.title}>
+              Welcome back{"\n"}to Mabank Wallet
+            </Text>
+            <Text style={[styles.message, shortScreenMessageStyle]}>Sign up with</Text>
+          </View> :
+          <View style={{ marginTop: 50 }} />
       }
+      <View >
+        {
+          !isKeyboardVisible ?
+            <View style={styles.sectionButtons}>
+              <BtnGoogle />
+              <View style={{ width: 20 }} />
+              <BtnFacebook />
+            </View> :
+            false
+        }
 
-      <View style={styles.sectionInputs}>
-        <Input placeholder="Username" />
-        <Input placeholder="Password" />
+        <View style={styles.sectionInputs}>
+          <Input placeholder="Username" />
+          <Input placeholder="Password" />
+        </View>
       </View>
-    </View>
-    <View style={styles.sectionBottom}>
-      <BtnDefault
-        onClick={() => Alert.alert('Btn funcionou!')}
-        text="Login"
-      />
-      <View style={styles.footerTextContainer}>
-        <Text style={styles.footerText}>
-          Don't have an account yet?
-        </Text>
-        <TouchableOpacity
-          onPress={()=> Alert.alert('Register')}
-        >
-          <Text style={styles.footerTextLink}>Login</Text>
-        </TouchableOpacity>
+      <View style={styles.sectionBottom}>
+        <BtnDefault
+          onClick={() => Alert.alert('Btn funcionou!')}
+          text="Login"
+        />
+        <View style={styles.footerTextContainer}>
+          <Text style={styles.footerText}>
+            Don't have an account yet?
+          </Text>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("SignUp")}
+          >
+            <Text style={styles.footerTextLink}>Register</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
+  bkg:{
+    flex:1,
+    backgroundColor: '#fff'
+  },
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#fff'
   },
   sectionTop: {
   },
@@ -131,21 +138,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   sectionBottom: {
-    marginTop:60
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 60
   },
-  footerTextContainer:{
-    marginLeft:3,
-    marginTop:10,
-    flexDirection:'row',
+  footerTextContainer: {
+    marginLeft: 3,
+    marginTop: 10,
+    flexDirection: 'row',
     justifyContent: 'center'
   },
-  footerText:{
-    fontSize:13,
+  footerText: {
+    fontSize: 13,
     fontFamily: 'Quicksand_500Medium',
     color: '#bdbdbd'
   },
-  footerTextLink:{
-    fontSize:13,
+  footerTextLink: {
+    marginLeft: 3,
+    fontSize: 13,
     fontFamily: 'Quicksand_500Medium',
     color: '#81C2FF'
   }

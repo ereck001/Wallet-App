@@ -27,10 +27,10 @@ const mockedData : DataType = {
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
 
-export default () => {
+export default (props :any) => {
 
   return <View style={styles.container}>
-    <HeaderWithBtn />
+    <HeaderWithBtn onClick={ () => props.navigation.navigate("Home")}/>
     <Text style={styles.title}>Detail Card</Text>
     <Image
       style={styles.image}

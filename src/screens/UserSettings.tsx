@@ -7,12 +7,12 @@ import {
   } from "react-native"
   import { Image } from "expo-image"
   import HeaderWithBtn from "../components/HeaderWithBtn"
-  import {     
-    ArrowRight2,     
+  import {
+    ArrowRight2,
     Trash,
     Edit2
 } from "iconsax-react-native"
-  
+
   type UserData ={
     id:number
     user:string
@@ -20,7 +20,7 @@ import {
     role:string
     image?:string
   }
-  
+
   const MockedData:UserData = {
     id: Math.random() * 10**17,
     user:'Joey',
@@ -29,11 +29,13 @@ import {
     image:'https://img.freepik.com/free-psd/3d-rendering-avatar_23-2150833572.jpg?w=740&t=st=1699892279~exp=1699892879~hmac=fb9df3f2417e6c25487977a78c7f3275aafc32fe53a1f2ec3b817687c2ac02f7',
 }
   const windowHeight = Dimensions.get('window').height
-  
-  export default ()=> {
-  
+
+  export default (props: any)=> {
+
     return <View style={styles.container}>
-      <HeaderWithBtn />
+      <HeaderWithBtn
+        onClick={() => props.navigation.navigate("Settings")}
+      />
       <TouchableOpacity style={styles.avatarContainer}>
         <Image  style={styles.avatar}
             source={MockedData.image}
@@ -46,63 +48,63 @@ import {
         </View>
       </TouchableOpacity>
       <View  style={styles.titleContainer}>
-        <Text style={styles.title}>{MockedData.user}</Text> 
+        <Text style={styles.title}>{MockedData.user}</Text>
         <TouchableOpacity style={styles.titleIcon}>
             <Edit2 size={24} color="#60708F"/>
-        </TouchableOpacity>        
-      </View>      
+        </TouchableOpacity>
+      </View>
       <View style={styles.optionsContainer}>
-        <TouchableOpacity style={styles.itemContainer}>            
+        <TouchableOpacity style={styles.itemContainer}>
             <View style={styles.itemContainerRight}>
                 <Text style={styles.text}>Connected Account</Text>
-                <ArrowRight2 
-                    size={10} 
+                <ArrowRight2
+                    size={10}
                     color="#363853"
-                    fontWeight={900}                    
+                    fontWeight={900}
                 />
             </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemContainer}>            
+        <TouchableOpacity style={styles.itemContainer}>
             <View style={styles.itemContainerRight}>
                 <Text style={styles.text}>Privacy and security</Text>
-                <ArrowRight2 
-                    size={10} 
+                <ArrowRight2
+                    size={10}
                     color="#363853"
-                    fontWeight={900}                    
+                    fontWeight={900}
                 />
             </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemContainer}>            
+        <TouchableOpacity style={styles.itemContainer}>
             <View style={styles.itemContainerRight}>
                 <Text style={styles.text}>Login Settings</Text>
-                <ArrowRight2 
-                    size={10} 
+                <ArrowRight2
+                    size={10}
                     color="#363853"
-                    fontWeight={900}                    
+                    fontWeight={900}
                 />
             </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemContainer}>            
+        <TouchableOpacity style={styles.itemContainer}>
             <View style={styles.itemContainerRight}>
                 <Text style={styles.text}>Service Center</Text>
-                <ArrowRight2 
-                    size={10} 
+                <ArrowRight2
+                    size={10}
                     color="#363853"
-                    fontWeight={900}                    
+                    fontWeight={900}
                 />
             </View>
-        </TouchableOpacity>        
+        </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.footerIconContainer}>
-        <Trash 
-            size={36} 
+        <Trash
+            size={36}
             color="#5B259F"
         />
         <Text style={styles.footerText}>Delete Account</Text>
       </TouchableOpacity>
     </View>
   }
-  
+
   const styles = StyleSheet.create({
     container:{
       alignItems:'center'
@@ -113,7 +115,7 @@ import {
         width:96,
         borderRadius: 48
     },
-    avatar:{        
+    avatar:{
         height:96,
         width:96,
         borderRadius: 48
@@ -123,14 +125,14 @@ import {
         width:'100%',
         position: 'absolute',
         borderRadius: 48,
-        overflow:'hidden'       
+        overflow:'hidden'
     },
     avatarMaskTop:{
         flex:7.5
     },
     avatarMaskBottom:{
         flex:2.5,
-        backgroundColor: 'rgba(47,17,85,0.8)',        
+        backgroundColor: 'rgba(47,17,85,0.8)',
     },
     avatarText:{
         textAlign:'center',
@@ -147,7 +149,7 @@ import {
       fontFamily:'Rubik_500Medium',
       fontSize:24,
       color:'#130138'
-    }, 
+    },
     titleIcon:{
         position:'absolute',
         bottom:2,
@@ -160,9 +162,9 @@ import {
         justifyContent:'space-between'
     },
     itemContainer:{
-        flexDirection:'row',        
+        flexDirection:'row',
         marginHorizontal:35
-    },    
+    },
     itemContainerLeft:{
         height:44,
         width:44,
@@ -197,4 +199,3 @@ import {
         color:'#5B259F'
     }
   })
-  

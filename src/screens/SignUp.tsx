@@ -16,7 +16,7 @@ import BtnFacebook from "../components/BtnSocialMedia/BtnFacebook"
 import BtnDefault from "../components/BtnDefault"
 import { useState, useEffect } from "react"
 
-export default () => {
+export default (props: any) => {
   const [isKeyboardVisible, setKeyboardVisible] = useState(false)
   const windownHeight = Dimensions.get('window').height
 
@@ -53,7 +53,8 @@ export default () => {
     };
   }, []);
 
-  return <SafeAreaView style={styles.container}>
+  return <SafeAreaView style={styles.bkg}>
+  <View style={styles.container}>
     {
       !isKeyboardVisible ?
       <View style={[ styles.sectionTop, shortScreenTitleStyle ]}>
@@ -91,18 +92,24 @@ export default () => {
           You have account?
         </Text>
         <TouchableOpacity
-          onPress={()=> Alert.alert('Login')}
+          onPress={()=> props.navigation.navigate("Login")}
         >
           <Text style={styles.footerTextLink}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
+    </View>
   </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
+  bkg:{
+    flex:1,
+    backgroundColor: '#fff'
+  },
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#fff'
   },
   sectionTop: {
     marginTop: 90
@@ -130,6 +137,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   sectionBottom: {
+    width: '100%',
+    alignItems:'center',
     marginTop:60
   },
   footerTextContainer:{
@@ -144,6 +153,7 @@ const styles = StyleSheet.create({
     color: '#bdbdbd'
   },
   footerTextLink:{
+    marginLeft:3,
     fontSize:13,
     fontFamily: 'Quicksand_500Medium',
     color: '#81C2FF'

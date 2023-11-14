@@ -13,11 +13,13 @@ import BtnDefault from "../components/BtnDefault"
 
 const windowHeight = Dimensions.get('window').height
 
-export default ()=> {
+export default (props: any)=> {
   const [money, setMoney] = useState('0')
 
   return <View style={styles.container}>
-    <HeaderWithBtn />
+    <HeaderWithBtn
+      onClick={() => props.navigation.navigate("Home")}
+    />
     <Text style={styles.display}>${money}</Text>
     <View style={styles.dropDownContainer}>
       <DropDownBtn />

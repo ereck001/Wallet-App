@@ -9,9 +9,11 @@ import HeaderWithBtn from "../components/HeaderWithBtn"
 
 const windowHeight = Dimensions.get('window').height
 
-export default ()=> {
+export default (props :any)=> {
   return <View style={styles.container}>
-    <HeaderWithBtn />
+    <HeaderWithBtn
+      onClick={() => props.navigation.navigate("Home")}
+    />
     <Text style={styles.title}>Add Card</Text>
     <View style={styles.imageContainer}>
       <Image

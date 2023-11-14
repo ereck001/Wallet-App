@@ -17,7 +17,7 @@ export default () => {
   const windowHeight = Dimensions.get('window').height
   return (
     <Tab.Navigator
-        initialRouteName='Stats'
+        initialRouteName='Home'
         screenOptions={{
             headerShown:false,
             tabBarShowLabel: false,
